@@ -1,0 +1,20 @@
+.wrapper {
+    position: relative;
+}
+.bottomBar {
+    height: 10px;
+    width: 250px;
+    background: #000;
+}
+.verticalBar {
+    height: 500px;
+    width: 10px;
+    background: #000;
+    margin: 0px 0px 0px 120px;
+}
+.topBar {
+    height: 10px;
+    width: 250px;
+    background: #000;
+    margin: 0px 0px 0px 120px;
+}
