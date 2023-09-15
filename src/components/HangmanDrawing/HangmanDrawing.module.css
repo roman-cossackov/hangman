@@ -18,3 +18,67 @@
     background: #000;
     margin: 0px 0px 0px 120px;
 }
+.endBar {
+    height: 50px;
+    width: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #000;
+}
+.hangmanHead {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 10px solid black;
+    position: absolute;
+    top: 50px;
+    right: -30px;
+}
+.hangmanBody {
+    width: 10px;
+    height: 100px; 
+    background: black;
+    position: absolute;
+    top: 119px;
+    right: 0px;
+}
+.hangmanRightArm {
+    width: 100px;
+    height: 10px; 
+    background: black;
+    position: absolute;
+    top: 150px;
+    right: -100px;
+    rotate: -30deg;
+    transform-origin: left bottom;
+}
+.hangmanLeftArm {
+    width: 100px;
+    height: 10px; 
+    background: black;
+    position: absolute;
+    top: 126px;
+    right: 0px;
+    rotate: 30deg;
+}
+.hangmanRightLeg {
+    width: 100px;
+    height: 10px; 
+    background: black;
+    position: absolute;
+    top: 209px;
+    right: -91px;
+    rotate: 60deg;
+    transform-origin: left bottom;
+}
+.hangmanLeftLeg {
+    width: 100px;
+    height: 10px; 
+    background: black;
+    position: absolute;
+    top: 207px;
+    right: -90px;
+    rotate: 120deg;
+    transform-origin: left bottom;
+}
