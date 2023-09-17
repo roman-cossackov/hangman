@@ -1,6 +1,18 @@
+import styles from './HangmanWord.module.css'
+
 const HangmanWord = () => {
+    const word = "test"
+    const guessedLetters = ['t'];
     return (
-        <h1>There is will be Hangman Word</h1>
+        <div className={styles.word}>
+            {word.split('').map((letter, index) => (
+                <span className={styles.letter} key={index}>
+                    <span style={
+                        {visibility: guessedLetters.includes(letter) ? "visible" : "hidden"}
+                    }>{letter}</span>
+                </span>
+            ))}
+        </div>
     );
 };
 
