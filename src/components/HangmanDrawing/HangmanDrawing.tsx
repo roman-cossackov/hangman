@@ -19,16 +19,17 @@ const LEFT_LEG = (
     <div className={styles.hangmanLeftLeg}></div>
 );
 
+const BODY_PARTS = [HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG]
 
-const HangmanDrawing = () => {
+type HangmanDrawingProps = {
+    numberOfGuesses: number;
+}
+
+
+const HangmanDrawing = (props:HangmanDrawingProps) => {
     return (
         <div className={styles.wrapper}>
-            {HEAD}
-            {BODY}
-            {RIGHT_ARM}
-            {LEFT_ARM}
-            {RIGHT_LEG}
-            {LEFT_LEG}
+            {BODY_PARTS.slice(0, props.numberOfGuesses)}
             <div className={styles.endBar}></div>
             <div className={styles.topBar}></div>
             <div className={styles.verticalBar}></div>

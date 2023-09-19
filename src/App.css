@@ -1,3 +1,6 @@
+body {
+    background-color: #F7F7F7;
+}
 .wrapper {
     max-width: 800px;
     display: flex;

@@ -1,6 +1,14 @@
+import styles from './Keyboard.module.css'
+
+const KEYS = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
+
 const Keyboard = () => {
     return (
-        <h1>There is will be Keyboard</h1>
+        <div className={styles.keyboard}>
+            {KEYS.map(key => (
+                <button className={`${styles.key} ${styles.inactive}`}>{key}</button>
+            ))}
+        </div>
     );
 };
 
