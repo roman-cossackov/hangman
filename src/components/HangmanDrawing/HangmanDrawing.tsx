@@ -1,22 +1,22 @@
 import styles from './HangmanDrawing.module.css'
 
 const HEAD = (
-    <div className={styles.hangmanHead}></div>
+    <div key={'head'} className={styles.hangmanHead}></div>
 );
 const BODY = (
-    <div className={styles.hangmanBody}></div>
+    <div key={'body'} className={styles.hangmanBody}></div>
 )
 const RIGHT_ARM = (
-    <div className={styles.hangmanRightArm}></div>
+    <div key={'right_arm'} className={styles.hangmanRightArm}></div>
 );
 const LEFT_ARM = (
-    <div className={styles.hangmanLeftArm}></div>
+    <div key={'left_arm'} className={styles.hangmanLeftArm}></div>
 );
 const RIGHT_LEG = (
-    <div className={styles.hangmanRightLeg}></div>
+    <div key={'right_lg'} className={styles.hangmanRightLeg}></div>
 );
 const LEFT_LEG = (
-    <div className={styles.hangmanLeftLeg}></div>
+    <div key={'legt_leg'} className={styles.hangmanLeftLeg}></div>
 );
 
 const BODY_PARTS = [HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG]
@@ -24,7 +24,6 @@ const BODY_PARTS = [HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG]
 type HangmanDrawingProps = {
     numberOfGuesses: number;
 }
-
 
 const HangmanDrawing = (props:HangmanDrawingProps) => {
     return (

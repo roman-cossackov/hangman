@@ -8,4 +8,14 @@
 }
 .letter {
     border-bottom: .1em solid black;
+    font-size: 50px;
+}
+@media (max-width: 768px) {
+    .word {
+        display: inline-block;
+        margin: 0 0 40px 0;
+    }
+    .letter {
+        margin-left: 10px;
+    }
 }

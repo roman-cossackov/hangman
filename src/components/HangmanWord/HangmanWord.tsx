@@ -2,13 +2,13 @@ import styles from './HangmanWord.module.css'
 
 type HangmanWordProps = {
     guessedLetters: string[]
-    wordToGuess: string
+    wordToGuess: string[]
 }
 
 const HangmanWord = (props:HangmanWordProps) => {
     return (
         <div className={styles.word}>
-            {props.wordToGuess.split('').map((letter, index) => (
+            {props.wordToGuess.map((letter, index) => (
                 <span className={styles.letter} key={index}>
                     <span style={
                         {visibility: props.guessedLetters.includes(letter) ? "visible" : "hidden"}
