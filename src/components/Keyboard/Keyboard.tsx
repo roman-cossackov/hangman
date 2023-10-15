@@ -14,7 +14,9 @@ const Keyboard = (props: KeyboardProps) => {
             {KEYS.map((key) => (
                 <button
                     key={key}
-                    className={`${styles.key} ${props.inactiveLetters.includes(key) && styles.inactive}`}
+                    className={`${styles.key} ${
+                        props.inactiveLetters.includes(key) && styles.inactive
+                    }`}
                     onClick={() => {
                         props.addGuessedLetter(key);
                     }}

@@ -21,7 +21,6 @@ function App() {
 
     const addGuessedLetter = useCallback(
         (letter: string) => {
-            console.log(wordToGuess);
             if (
                 guessedLetters.includes(letter) ||
                 incorrectLetters.includes(letter)
@@ -29,7 +28,7 @@ function App() {
                 return;
             }
             if (wordToGuess.includes(letter)) {
-                console.log(wordToGuess.filter((l) => l === letter).length)
+                console.log(wordToGuess.filter((l) => l === letter).length);
                 playRight();
                 setGuessedLetters((prev) => [
                     ...prev,
@@ -40,7 +39,9 @@ function App() {
                     setIsWon(true);
                 }
                 if (wordToGuess.filter((l) => l === letter).length > 1) {
-                    const length = wordToGuess.filter((l) => l === letter).length
+                    const length = wordToGuess.filter(
+                        (l) => l === letter
+                    ).length;
                     if (wordToGuess.length === guessedLetters.length + length) {
                         playWin();
                         setIsWon(true);
