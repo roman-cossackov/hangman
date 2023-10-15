@@ -10,8 +10,13 @@ import sound1 from "./assets/error_sound.wav";
 import sound2 from "./assets/right_sound.mp3";
 import sound3 from "./assets/win_sound.wav";
 
-const WORD = generate({ minLength: 5, maxLength: 10 }).toUpperCase().split("");
+const WORD = generate({
+    min: 2,
+    max: 3,
+    formatter: (word) => word.toUpperCase(),
+})[0].split('')
 
+console.log(WORD)
 function App() {
     const [wordToGuess, setWordToGuess] = useState<string[]>(WORD);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
