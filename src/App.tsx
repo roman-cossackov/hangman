@@ -14,9 +14,9 @@ const WORD = generate({
     min: 2,
     max: 3,
     formatter: (word) => word.toUpperCase(),
-})[0].split('')
+})[0].split("");
 
-console.log(WORD)
+console.log(WORD);
 function App() {
     const [wordToGuess, setWordToGuess] = useState<string[]>(WORD);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
@@ -84,7 +84,11 @@ function App() {
         setIsWon(false);
         setIsLost(false);
         setWordToGuess(
-            generate({ minLength: 5, maxLength: 10 }).toUpperCase().split("")
+            generate({
+                min: 2,
+                max: 3,
+                formatter: (word) => word.toUpperCase(),
+            })[0].split("")
         );
         setGuessedLetters([]);
         setIncorrectLetter([]);
