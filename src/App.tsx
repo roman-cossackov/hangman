@@ -6,34 +6,55 @@ import HangmanDrawing from "./components/HangmanDrawing/HangmanDrawing";
 import HangmanWord from "./components/HangmanWord/HangmanWord";
 import Keyboard from "./components/Keyboard/Keyboard";
 import ResultModal from "./components/ResultModal/ResultModal";
-import sound1 from "./assets/error.wav";
+import sound1 from "./assets/error_sound.wav";
 import sound2 from "./assets/right_sound.mp3";
 import sound3 from "./assets/win_sound.wav";
 
-const WORD = generate({minLength: 5, maxLength: 10 }).toUpperCase().split('')
+const WORD = generate({ minLength: 5, maxLength: 10 }).toUpperCase().split("");
 
 function App() {
-    const [wordToGuess, setWordToGuess] = useState(WORD);
-    console.log(WORD);
+    const [wordToGuess, setWordToGuess] = useState<string[]>(WORD);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-    const [isWon, setIsWon] = useState(true);
-    const incorrectLetters = guessedLetters.filter(
-        (letter) => !wordToGuess.includes(letter)
-    );
-    // ADD SOUNDS!!!
+    const [incorrectLetters, setIncorrectLetter] = useState<string[]>([]);
+    const [isWon, setIsWon] = useState<boolean>(false);
+    const [isLost, setIsLost] = useState<boolean>(false);
 
     const addGuessedLetter = useCallback(
         (letter: string) => {
+            console.log(wordToGuess);
             if (
                 guessedLetters.includes(letter) ||
                 incorrectLetters.includes(letter)
-            )
+            ) {
                 return;
-
-            setGuessedLetters((prev) => [...prev, letter]);
-            console.log(guessedLetters);
+            }
+            if (wordToGuess.includes(letter)) {
+                console.log(wordToGuess.filter((l) => l === letter).length)
+                playRight();
+                setGuessedLetters((prev) => [
+                    ...prev,
+                    ...wordToGuess.filter((l) => l === letter),
+                ]);
+                if (wordToGuess.length === guessedLetters.length + 1) {
+                    playWin();
+                    setIsWon(true);
+                }
+                if (wordToGuess.filter((l) => l === letter).length > 1) {
+                    const length = wordToGuess.filter((l) => l === letter).length
+                    if (wordToGuess.length === guessedLetters.length + length) {
+                        playWin();
+                        setIsWon(true);
+                    }
+                }
+            } else {
+                playWrong();
+                setIncorrectLetter((prev) => [...prev, letter]);
+                if (incorrectLetters.length === 5) {
+                    setIsLost(true);
+                }
+            }
         },
-        [guessedLetters, incorrectLetters]
+        [guessedLetters, incorrectLetters, wordToGuess]
     );
 
     useEffect(() => {
@@ -53,19 +74,30 @@ function App() {
         };
     }, [guessedLetters, addGuessedLetter]);
 
-    
-  const playWrong = () => {
-    new Audio(sound1).play()
-  }
+    const startNewGame = () => {
+        setIsWon(false);
+        setIsLost(false);
+        setWordToGuess(
+            generate({ minLength: 5, maxLength: 10 }).toUpperCase().split("")
+        );
+        setGuessedLetters([]);
+        setIncorrectLetter([]);
+    };
 
-  const playRight = () => {
-    new Audio(sound2).play()
-  }
+    const playWrong = () => {
+        const audio = new Audio(sound1);
+        audio.volume = 0.1;
+        audio.play();
+    };
 
-  const playWin = () => {
-    new Audio(sound3).play()
-  }
-  
+    const playRight = () => {
+        new Audio(sound2).play();
+    };
+
+    const playWin = () => {
+        new Audio(sound3).play();
+    };
+
     return (
         <>
             <div className="wrapper">
@@ -82,8 +114,18 @@ function App() {
                     addGuessedLetter={addGuessedLetter}
                 />
             </div>
-            {isWon && <ResultModal setIsWon={setIsWon}/>}
-            
+            {isWon && (
+                <ResultModal
+                    startNewGame={startNewGame}
+                    content={"YOU WON!!!"}
+                />
+            )}
+            {isLost && (
+                <ResultModal
+                    startNewGame={startNewGame}
+                    content={"YOU LOST("}
+                />
+            )}
         </>
     );
 }

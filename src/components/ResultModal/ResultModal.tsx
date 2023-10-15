@@ -1,27 +1,33 @@
 import styles from "./ResultModal.module.css";
-import { RiCloseLine } from "react-icons/ri";
+import ReactDOM from "react-dom";
 
-const ResultModal = (props) => {
-    return (
+type ResultModalProps = {
+    startNewGame: () => void;
+    content: string;
+};
+
+const ResultModal = (props: ResultModalProps) => {
+    return ReactDOM.createPortal(
         <>
             <div
                 className={styles.darkBG}
-                onClick={() => props.setIsWon(false)}
+                onClick={() => props.startNewGame()}
             />
             <div className={styles.centered}>
                 <div className={styles.modal}>
-                    <div className={styles.modalContent}>YOU WON!!!</div>
+                    <div className={styles.modalContent}>{props.content}</div>
                     <div className={styles.actionsContainer}>
                         <button
-                            className={styles.deleteBtn}
-                            onClick={() => props.setIsWon(false)}
+                            className={styles.newGameBtn}
+                            onClick={() => props.startNewGame()}
                         >
                             Start new game
                         </button>
                     </div>
                 </div>
             </div>
-        </>
+        </>,
+        document.getElementById("modal")
     );
 };
 
