@@ -8,7 +8,7 @@ type ResultModalProps = {
 
 const ResultModal = (props: ResultModalProps) => {
     return ReactDOM.createPortal(
-        <>
+        <div>
             <div
                 className={styles.darkBG}
                 onClick={() => props.startNewGame()}
@@ -26,8 +26,8 @@ const ResultModal = (props: ResultModalProps) => {
                     </div>
                 </div>
             </div>
-        </>,
-        document.getElementById("modal")
+        </div>,
+        document.getElementById("modal")!
     );
 };
 

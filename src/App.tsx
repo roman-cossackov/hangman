@@ -13,6 +13,7 @@ import sound3 from "./assets/win_sound.wav";
 const WORD = generate({
     min: 2,
     max: 3,
+    minLength: 5,
     formatter: (word) => word.toUpperCase(),
 })[0].split("");
 
@@ -87,6 +88,7 @@ function App() {
             generate({
                 min: 2,
                 max: 3,
+                minLength: 5,
                 formatter: (word) => word.toUpperCase(),
             })[0].split("")
         );
